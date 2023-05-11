@@ -622,7 +622,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         if(showChinese){
                             text_tip1.setText("风扇异常");
                         }else{
-                            text_tip1.setText("Fan abnormal");
+                            text_tip1.setText("Fan err");
                         }
                     }else if(tip1_ori.equals(temp_23)){
                         if(showChinese){
@@ -634,7 +634,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         if(showChinese){
                             text_tip1.setText("电池异常");
                         }else{
-                            text_tip1.setText("Bat poor");
+                            text_tip1.setText("Battery err");
                         }
                     }
                     //容量
