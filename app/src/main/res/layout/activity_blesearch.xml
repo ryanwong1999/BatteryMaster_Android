@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2F0D9"
+    android:orientation="vertical">
+
+    <com.example.view.CustomTitleBlock
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <com.example.view.CustomTitleBlock
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:leftImage="@drawable/greenlogo"/>
+
+    <com.example.view.CustomTitleBlock
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/purple_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/bet_analyzer"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/purple_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/devices_list"/>
+<!--        <Button-->
+<!--            android:id="@+id/btn_scan"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:onClick="reScan"-->
+<!--            android:textSize="20sp"-->
+<!--            android:background="@drawable/btn_shap"-->
+<!--            android:textColor="#ffffff"-->
+<!--            android:text="@string/reScan"/>-->
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ble"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/stroke"
+        android:padding="4dp"
+        app:layout_constraintHeight_percent="0.4"/>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_scan"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:onClick="reScan"-->
+<!--            android:background="#E2F0D9"-->
+<!--            android:src="@drawable/xml_refresh" />-->
+
+        <Button
+            android:id="@+id/btn_scan"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:onClick="reScan"
+            android:background="@drawable/button_selector_g"
+            android:text="@string/reScan"
+            android:textColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/Bnt_return"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:onClick="return_home"
+            android:background="@drawable/button_selector_g"
+            android:text="@string/back"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.2"
+        android:background="@drawable/stroke"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="2dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColor="#000000"/>
+    </ScrollView>
+
+
+</LinearLayout>

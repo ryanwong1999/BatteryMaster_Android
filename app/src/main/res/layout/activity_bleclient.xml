@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="2dp"
+    android:background="#E2F0D9"
+    tools:context=".ble.BleClientActivity">
+
+    <Button
+        android:id="@+id/btn_scan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="reScan"
+        android:text="@string/reScan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_clean_log"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rv_ble"/>
+
+    <Button
+        android:id="@+id/btn_clean_log"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="cleanLog"
+        android:text="@string/clean_log"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_scan"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rv_ble" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ble"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/stroke"
+        android:padding="4dp"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan" />
+
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="read"
+        android:text="@string/read"
+        app:layout_constraintEnd_toStartOf="@+id/btn_notify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_ble" />
+
+    <Button
+        android:id="@+id/btn_write_cmd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/setNotify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_read"
+        app:layout_constraintTop_toBottomOf="@+id/rv_ble" />
+
+    <EditText
+        android:id="@+id/et_write"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/max_byte"
+        android:inputType="none"
+        android:maxLength="20"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_write"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read" />
+
+
+    <Button
+        android:id="@+id/btn_write"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="write"
+        android:text="@string/write"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_write"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write_cmd" />
+
+    <Button
+        android:id="@+id/btn_notify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="writeCmd"
+        android:text="@string/write_cmd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_write_long_cmd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_write_long_cmd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:onClick="writeLongCmd"
+        android:textSize="10sp"
+        android:text="@string/write_long_cmd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_write_cmd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/stroke"
+        android:padding="2dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write">
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

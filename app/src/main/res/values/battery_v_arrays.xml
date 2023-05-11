@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="battery_v_li_70_5">
+        <item>3.6/3.7</item>
+    </string-array>
+    <string-array name="battery_v_li_70_18">
+        <item>3.6/3.7</item>
+        <item>7.2/7.4</item>
+        <item>10.8/11.1</item>
+        <item>14.4/14.8</item>
+    </string-array>
+    <string-array name="battery_v_li_200_5">
+        <item>3.6/3.7</item>
+    </string-array>
+    <string-array name="battery_v_li_200_32">
+        <item>3.6/3.7</item>
+        <item>7.2/7.4</item>
+        <item>10.8/11.1</item>
+        <item>14.4/14.8</item>
+        <item>18.0/18.5</item>
+        <item>21.6/22.2</item>
+        <item>25.2/25.9</item>
+    </string-array>
+
+    <string-array name="battery_v_fe_70_5">
+        <item>3.2</item>
+    </string-array>
+    <string-array name="battery_v_fe_70_18">
+        <item>3.2</item>
+        <item>6.4</item>
+        <item>9.6</item>
+        <item>12.8</item>
+    </string-array>
+    <string-array name="battery_v_fe_200_5">
+        <item>3.2</item>
+    </string-array>
+    <string-array name="battery_v_fe_200_32">
+        <item>3.2</item>
+        <item>6.4</item>
+        <item>9.6</item>
+        <item>12.8</item>
+        <item>16.0</item>
+        <item>19.2</item>
+        <item>22.4</item>
+        <item>25.6</item>
+    </string-array>
+
+    <string-array name="battery_v_pb_70_5">
+        <item>2.0</item>
+        <item>4.0</item>
+    </string-array>
+    <string-array name="battery_v_pb_70_18">
+        <item>2.0</item>
+        <item>4.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>12.0</item>
+        <item>14.0</item>
+    </string-array>
+    <string-array name="battery_v_pb_200_5">
+        <item>2.0</item>
+        <item>4.0</item>
+    </string-array>
+    <string-array name="battery_v_pb_200_32">
+        <item>2.0</item>
+        <item>4.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>12.0</item>
+        <item>14.0</item>
+        <item>16.0</item>
+        <item>18.0</item>
+        <item>20.0</item>
+        <item>22.0</item>
+        <item>24.0</item>
+    </string-array>
+
+    <string-array name="battery_v_ni_70_5">
+        <item>1.2</item>
+        <item>2.4</item>
+        <item>3.6</item>
+    </string-array>
+    <string-array name="battery_v_ni_70_18">
+        <item>1.2</item>
+        <item>2.4</item>
+        <item>3.6</item>
+        <item>4.8</item>
+        <item>6.0</item>
+        <item>7.2</item>
+        <item>8.4</item>
+        <item>9.6</item>
+        <item>10.8</item>
+        <item>12.0</item>
+    </string-array>
+    <string-array name="battery_v_ni_200_5">
+        <item>1.2</item>
+        <item>2.4</item>
+        <item>3.6</item>
+    </string-array>
+    <string-array name="battery_v_ni_200_32">
+        <item>1.2</item>
+        <item>2.4</item>
+        <item>3.6</item>
+        <item>4.8</item>
+        <item>6.0</item>
+        <item>7.2</item>
+        <item>8.4</item>
+        <item>9.6</item>
+        <item>10.8</item>
+        <item>12.0</item>
+        <item>13.2</item>
+        <item>14.4</item>
+        <item>15.6</item>
+        <item>16.8</item>
+        <item>18.0</item>
+        <item>19.2</item>
+        <item>20.4</item>
+        <item>21.6</item>
+    </string-array>
+</resources>

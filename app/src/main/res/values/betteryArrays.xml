@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="battery_data">
+        <item>@string/li_batt</item>
+        <item>@string/fe_batt</item>
+        <item>@string/pb_batt</item>
+        <item>@string/ni_batt</item>
+    </string-array>
+</resources>
