@@ -437,6 +437,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                     //soh
                     String soh_ori = Arg_msg.substring(12, 14);
                     int soh = (int) (IntByteStringHexUtil.covert(soh_ori));
+                    if(soh > 100) soh = 100;
                     //内阻
                     String battery_omega_ori = Arg_msg.substring(14, 18);
                     float battery_omega = (float) (IntByteStringHexUtil.covert(battery_omega_ori) * 0.1);
@@ -693,6 +694,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_2 = Arg_msg.substring(8+36, 10+36);
                         int soh_2 = (int) (IntByteStringHexUtil.covert(soh_ori_2));
+                        if(soh_2 > 100) soh_2 = 100;
                         text_soh_2.setVisibility(View.VISIBLE);
                         if(soh2_flag.equals("02")){
                             float soh2 = (PreviewActivity.battery_res / battery_omega_2) * 100;
@@ -767,6 +769,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_3 = Arg_msg.substring(8+36+32, 10+36+32);
                         int soh_3 = (int) (IntByteStringHexUtil.covert(soh_ori_3));
+                        if(soh_3 > 100) soh_3 = 100;
                         text_soh_3.setVisibility(View.VISIBLE);
                         if(soh3_flag.equals("02")){
                             float soh3 = (PreviewActivity.battery_res / battery_omega_3) * 100;
@@ -838,6 +841,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_4 = Arg_msg.substring(8+36+(32*2), 10+36+(32*2));
                         int soh_4 = (int) (IntByteStringHexUtil.covert(soh_ori_4));
+                        if(soh_4 > 100) soh_4 = 100;
                         text_soh_4.setVisibility(View.VISIBLE);
                         if(soh4_flag.equals("02")){
                             float soh4 = (PreviewActivity.battery_res / battery_omega_4) * 100;
@@ -909,6 +913,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_5 = Arg_msg.substring(8+36+(32*3), 10+36+(32*3));
                         int soh_5 = (int) (IntByteStringHexUtil.covert(soh_ori_5));
+                        if(soh_5 > 100) soh_5 = 100;
                         text_soh_5.setVisibility(View.VISIBLE);
                         if(soh5_flag.equals("02")){
                             float soh5 = (PreviewActivity.battery_res / battery_omega_5) * 100;
@@ -980,6 +985,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_6 = Arg_msg.substring(8+36+(32*4), 10+36+(32*4));
                         int soh_6 = (int) (IntByteStringHexUtil.covert(soh_ori_6));
+                        if(soh_6 > 100) soh_6 = 100;
                         text_soh_6.setVisibility(View.VISIBLE);
                         if(soh6_flag.equals("02")){
                             float soh6 = (PreviewActivity.battery_res / battery_omega_6) * 100;
@@ -1051,6 +1057,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_7 = Arg_msg.substring(8+36+(32*5), 10+36+(32*5));
                         int soh_7 = (int) (IntByteStringHexUtil.covert(soh_ori_7));
+                        if(soh_7 > 100) soh_7 = 100;
                         text_soh_7.setVisibility(View.VISIBLE);
                         if(soh7_flag.equals("02")){
                             float soh7 = (PreviewActivity.battery_res / battery_omega_7) * 100;
@@ -1122,6 +1129,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         //soh
                         String soh_ori_8 = Arg_msg.substring(8+36+(32*6), 10+36+(32*6));
                         int soh_8 = (int) (IntByteStringHexUtil.covert(soh_ori_8));
+                        if(soh_8 > 100) soh_8 = 100;
                         text_soh_8.setVisibility(View.VISIBLE);
                         if(soh8_flag.equals("02")){
                             float soh8 = (PreviewActivity.battery_res / battery_omega_8) * 100;
