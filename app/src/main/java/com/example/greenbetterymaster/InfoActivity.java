@@ -443,6 +443,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                     float battery_omega = (float) (IntByteStringHexUtil.covert(battery_omega_ori) * 0.1);
                     DecimalFormat df_battery_omega = new DecimalFormat("0.0");//保留两位小数
                     text_battery_omega.setText(df_battery_omega.format(battery_omega));
+                    if(battery_omega == 0) text_battery_omega.setText("---");
                     if(soh_flag.equals("02")){
                         float soh1 = (PreviewActivity.battery_res / battery_omega) * 100;
                         text_soh.setText(String.valueOf((int)soh1) + "% R");
@@ -689,6 +690,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_2 = new DecimalFormat("0.0");//保留两位小数
                         text_battery_omega_2.setVisibility(View.VISIBLE);
                         text_battery_omega_2.setText(df_battery_omega_2.format(battery_omega_2));
+                        if(battery_omega_2 == 0) text_battery_omega_2.setText("---");
                         //soh flag
                         String soh2_flag = Arg_msg.substring(34+36, 36+36);
                         //soh
@@ -764,6 +766,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_3 = new DecimalFormat("0.0");
                         text_battery_omega_3.setVisibility(View.VISIBLE);
                         text_battery_omega_3.setText(df_battery_omega_3.format(battery_omega_3));
+                        if(battery_omega_3 == 0) text_battery_omega_3.setText("---");
                         //soh flag
                         String soh3_flag = Arg_msg.substring(32+36+32, 34+36+32);
                         //soh
@@ -836,6 +839,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_4 = new DecimalFormat("0.0");
                         text_battery_omega_4.setVisibility(View.VISIBLE);
                         text_battery_omega_4.setText(df_battery_omega_4.format(battery_omega_4));
+                        if(battery_omega_4 == 0) text_battery_omega_4.setText("---");
                         //soh flag
                         String soh4_flag = Arg_msg.substring(34+36+(32*2), 36+36+(32*2));
                         //soh
@@ -908,6 +912,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_5 = new DecimalFormat("0.0");
                         text_battery_omega_5.setVisibility(View.VISIBLE);
                         text_battery_omega_5.setText(df_battery_omega_5.format(battery_omega_5));
+                        if(battery_omega_5 == 0) text_battery_omega_5.setText("---");
                         //soh flag
                         String soh5_flag = Arg_msg.substring(34+36+(32*3), 36+36+(32*3));
                         //soh
@@ -980,6 +985,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_6 = new DecimalFormat("0.0");
                         text_battery_omega_6.setVisibility(View.VISIBLE);
                         text_battery_omega_6.setText(df_battery_omega_6.format(battery_omega_6));
+                        if(battery_omega_6 == 0) text_battery_omega_6.setText("---");
                         //soh flag
                         String soh6_flag = Arg_msg.substring(34+36+(32*4), 36+36+(32*4));
                         //soh
@@ -1052,6 +1058,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_7 = new DecimalFormat("0.0");
                         text_battery_omega_7.setVisibility(View.VISIBLE);
                         text_battery_omega_7.setText(df_battery_omega_7.format(battery_omega_7));
+                        if(battery_omega_7 == 0) text_battery_omega_7.setText("---");
                         //soh flag
                         String soh7_flag = Arg_msg.substring(34+36+(32*5), 36+36+(32*5));
                         //soh
@@ -1124,6 +1131,7 @@ public class InfoActivity extends AppCompatActivity implements View.OnClickListe
                         DecimalFormat df_battery_omega_8 = new DecimalFormat("0.0");
                         text_battery_omega_8.setVisibility(View.VISIBLE);
                         text_battery_omega_8.setText(df_battery_omega_8.format(battery_omega_8));
+                        if(battery_omega_8 == 0) text_battery_omega_8.setText("---");
                         //soh flag
                         String soh8_flag = Arg_msg.substring(32+36+(32*6), 34+36+(32*6));
                         //soh

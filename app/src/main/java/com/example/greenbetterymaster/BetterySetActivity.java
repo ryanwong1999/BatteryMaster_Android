@@ -30,6 +30,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BetterySetActivity extends AppCompatActivity implements View.OnClickListener {
+    String bat_type_1 = "锂离子";
+    String bat_type_1_1 = "LI";
+    String bat_type_2 = "铁锂";
+    String bat_type_2_1 = "FE";
+    String bat_type_3 = "铅酸";
+    String bat_type_3_1 = "PB";
+    String bat_type_4 = "镍氢";
+    String bat_type_4_1 = "NI";
 
     private Button Bnt_save;
     private Button Bnt_quit;
@@ -96,31 +104,124 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
         InitSpinner(0);
         InitSpinner_li(0);
         setShow();
-        edit_bettery_ah.addTextChangedListener(textWatcher);
+        edit_bettery_ah.addTextChangedListener(bettery_ah_Watcher);
+        edit_charge_v.addTextChangedListener(charge_v_Watcher);
+        edit_stop_v.addTextChangedListener(stop_v_Watcher);
     }
-    //监听电池容量EditText
-    private final TextWatcher textWatcher = new TextWatcher() {
+    //监听停止电压EditText
+    private final TextWatcher stop_v_Watcher = new TextWatcher() {
         @Override
         public void afterTextChanged(Editable s) {
             // TODO Auto-generated method stub
-            Log.d("TAG","afterTextChanged--------------->");
-            mySetText();
+            stop_v_SetText();
+        }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+        }
+    };
+
+    public void stop_v_SetText() {
+        String stop_v = edit_stop_v.getText().toString().trim();
+        boolean test_2 = isDouble(stop_v);
+        boolean test_2_1 = isInteger(stop_v);
+        if(!test_2 && !test_2_1) {
+            showTip("请输入正确的停止电压");
+            return;
+        }
+        BluetoothGattService service = BleClientActivity.getGattService(BleServerActivity.UUID_SERVICE);
+        if (service != null && my_bettery_v != null) {
+            float stop_v_f = Float.parseFloat(stop_v);
+            int bettery_v_f = (int) Float.parseFloat(my_bettery_v)*10;
+            DecimalFormat df_stop_v_max = new DecimalFormat("0.0");//保留1位小数
+            if (my_battery_type.equals(bat_type_1) || my_battery_type.equals(bat_type_1_1)) {
+                if (stop_v_f > bettery_v_f) edit_charge_v.setText(String.valueOf(my_bettery_v));
+                else if(stop_v_f < 2.7) edit_charge_v.setText("2.7");
+            } else {
+                if (stop_v_f > bettery_v_f) edit_charge_v.setText(String.valueOf(my_bettery_v));
+                else if (stop_v_f > bettery_v_f*0.75) edit_charge_v.setText(df_stop_v_max.format(my_bettery_v));
+            }
+        }
+    }
+
+    //监听充电电压EditText
+    private final TextWatcher charge_v_Watcher = new TextWatcher() {
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+            charge_v_SetText();
+        }
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+        }
+    };
+
+    public void charge_v_SetText() {
+        String charge_v = edit_charge_v.getText().toString().trim();
+        boolean test_2 = isDouble(charge_v);
+        boolean test_2_1 = isInteger(charge_v);
+        if(!test_2 && !test_2_1) {
+            showTip("请输入正确的充电电压");
+            return;
+        }
+        BluetoothGattService service = BleClientActivity.getGattService(BleServerActivity.UUID_SERVICE);
+        if (service != null && my_bettery_v != null) {
+            float charge_v_f = Float.parseFloat(charge_v);
+            int bettery_v_f = (int) Float.parseFloat(my_bettery_v)*10;
+            //充电电压 li:3  fe:2.75  pb:1.5  ni:1
+            //最大值
+            DecimalFormat df_charge_v_max = new DecimalFormat("0.0");//保留1位小数
+            if(charge_v_f > charge_v_new*1.04)
+                edit_charge_v.setText(df_charge_v_max.format(charge_v_new*1.04));
+            //最小值
+            if(my_battery_type.equals(bat_type_1) || my_battery_type.equals(bat_type_1_1)) {   //li
+                if(charge_v_f < (1.0*bettery_v_f/37)*3)
+                    edit_charge_v.setText(df_charge_v_max.format((bettery_v_f/37)*3));
+            } else if (my_battery_type.equals(bat_type_2) || my_battery_type.equals(bat_type_2_1)) {    //fe
+                if(charge_v_f < (1.0*bettery_v_f/32)*2.75)
+                    edit_charge_v.setText(df_charge_v_max.format((bettery_v_f/32)*2.75));
+            } else if (my_battery_type.equals(bat_type_3) || my_battery_type.equals(bat_type_3_1)) {    //pb
+                if(charge_v_f < (1.0*bettery_v_f/20)*1.5)
+                    edit_charge_v.setText(df_charge_v_max.format((bettery_v_f/20)*1.5));
+            } else if (my_battery_type.equals(bat_type_4) || my_battery_type.equals(bat_type_4_1)) {    //ni
+                if(charge_v_f < (1.0*bettery_v_f/12))
+                    edit_charge_v.setText(df_charge_v_max.format(bettery_v_f/12));
+            }
+        }
+    }
+
+    //监听电池容量EditText
+    private final TextWatcher bettery_ah_Watcher = new TextWatcher() {
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+            Log.d("TAG","afterBetteryAhChanged--------------->");
+            bettery_ah_SetText();
             firstSelect++;
         }
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count,
                                       int after) {
             // TODO Auto-generated method stub
-            Log.d("TAG","beforeTextChanged--------------->");
+            Log.d("TAG","beforeBetteryAhChanged--------------->");
         }
         @Override
         public void onTextChanged(CharSequence s, int start, int before,
                                   int count) {
-            Log.d("TAG","onTextChanged--------------->");
+            Log.d("TAG","onBetteryAhChanged--------------->");
         }
     };
 
-    public void mySetText() {
+    public void bettery_ah_SetText() {
         //根据电池容量修改内阻值
         String bettery_ah = edit_bettery_ah.getText().toString().trim();
         boolean test_2 = isDouble(bettery_ah);
@@ -653,7 +754,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                         battery_type=4;
                         InitSpinner_ni(0);
                     }
-                    mySetText();
+                    bettery_ah_SetText();
                 }else{
                     if(spinner_content[position].equals("锂离子") || spinner_content[position].equals("LI")){
                         battery_type=1;
@@ -717,7 +818,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.2;
                                 edit_stop_v.setText("3.1");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -766,7 +867,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 16.8;
                                 edit_stop_v.setText("12.6");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -797,7 +898,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.2;
                                 edit_stop_v.setText("3.1");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
                     @Override
@@ -863,7 +964,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 29.4;
                                 edit_stop_v.setText("22.0");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -886,7 +987,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String[] spinner_content = getResources().getStringArray(R.array.battery_v_li_200_5);
                     my_bettery_v = String.valueOf(spinner_content[position]);
-                    mySetText();
+                    bettery_ah_SetText();
                 }
 
                 @Override
@@ -920,7 +1021,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 3.65;
                                 edit_stop_v.setText("2.7");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -959,7 +1060,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 14.6;
                                 edit_stop_v.setText("10.9");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -986,7 +1087,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 3.65;
                                 edit_stop_v.setText("2.7");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1041,7 +1142,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 29.2;
                                 edit_stop_v.setText("21.8");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1063,7 +1164,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String[] spinner_content = getResources().getStringArray(R.array.battery_v_fe_200_5);
                     my_bettery_v = String.valueOf(spinner_content[position]);
-                    mySetText();
+                    bettery_ah_SetText();
                 }
 
                 @Override
@@ -1101,7 +1202,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.9;
                                 edit_stop_v.setText("3.6");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1152,7 +1253,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 17.15;
                                 edit_stop_v.setText("12.6");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1183,7 +1284,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.9;
                                 edit_stop_v.setText("3.6");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1254,7 +1355,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 29.4;
                                 edit_stop_v.setText("21.6");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1276,7 +1377,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String[] spinner_content = getResources().getStringArray(R.array.battery_v_pb_200_5);
                     my_bettery_v = String.valueOf(spinner_content[position]);
-                    mySetText();
+                    bettery_ah_SetText();
                 }
 
                 @Override
@@ -1318,7 +1419,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.8;
                                 edit_stop_v.setText("3.0");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1381,7 +1482,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 16.2;
                                 edit_stop_v.setText("10.0");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1416,7 +1517,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 4.8;
                                 edit_stop_v.setText("3.0");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1511,7 +1612,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                                 charge_v_new = 29.0;
                                 edit_stop_v.setText("18.0");
                             }
-                            mySetText();
+                            bettery_ah_SetText();
                         }
                     }
 
@@ -1533,7 +1634,7 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String[] spinner_content = getResources().getStringArray(R.array.battery_v_ni_200_5);
                     my_bettery_v = String.valueOf(spinner_content[position]);
-                    mySetText();
+                    bettery_ah_SetText();
                 }
 
                 @Override
@@ -1653,15 +1754,6 @@ public class BetterySetActivity extends AppCompatActivity implements View.OnClic
                     out_a = stringFloat2HexStr(out_a, 10, true, 4);
                     stop_v = stringFloat2HexStr(stop_v, 10, true, 4);
                     protect_t = stringFloat2HexStr(protect_t, 1, true, 2);
-
-                    String bat_type_1 = "锂离子";
-                    String bat_type_1_1 = "LI";
-                    String bat_type_2 = "铁锂";
-                    String bat_type_2_1 = "FE";
-                    String bat_type_3 = "铅酸";
-                    String bat_type_3_1 = "PB";
-                    String bat_type_4 = "镍氢";
-                    String bat_type_4_1 = "NI";
 
                     if (my_battery_type.equals(bat_type_1) || my_battery_type.equals(bat_type_1_1)) {
                         ibattery_type = "01";
